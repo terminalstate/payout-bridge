@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "payout-bridge"
+version = "0.1.0"
+description = "Walk from your ledger to the provider's report to the bank, and name every difference: Stripe and Adyen exports, a bank statement, read-only."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "terminalstate" }]
+keywords = ["reconciliation", "payments", "payouts", "stripe", "adyen", "ledger", "settlement"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Financial and Insurance Industry",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Office/Business :: Financial :: Accounting",
+]
+dependencies = []
+
+[project.scripts]
+payout-bridge = "payout_bridge.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/terminalstate/payout-bridge"
+Issues = "https://github.com/terminalstate/payout-bridge/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+include = ["payout_bridge*"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

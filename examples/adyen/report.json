@@ -1,0 +1,3609 @@
+{
+  "inputs": {
+    "provider_rows": 250,
+    "ledger_entries": 273,
+    "bank_lines": 60,
+    "provider_window": [
+      "2026-08-29 23:04:01+00:00",
+      "2026-09-28 19:44:28+00:00"
+    ],
+    "ledger_window": [
+      "2026-08-27 01:28:32+00:00",
+      "2026-10-02 17:03:01+00:00"
+    ],
+    "payouts": 30
+  },
+  "worst": "error",
+  "counts": {
+    "pending_in_ledger": 1,
+    "not_in_ledger": 3,
+    "double_charge": 3,
+    "row_arithmetic": 2,
+    "payout_sum": 1,
+    "rounding": 2,
+    "fee_above_schedule": 1,
+    "bank_amount_differs": 1,
+    "day_shift": 56,
+    "outside_window": 42
+  },
+  "notes": [
+    "39 paid ledger entries (389.72 EUR, 5,283.52 USD) are outside the report's dates and not in the walk (outside_window)."
+  ],
+  "walks": {
+    "USD": [
+      {
+        "label": "Your ledger, paid entries in the report's dates (19 in other currencies, at the provider's rate)",
+        "amount_minor": 3073339,
+        "count": null,
+        "class": null,
+        "total": true
+      },
+      {
+        "label": "Your ledger, matched to the provider",
+        "amount_minor": 3073339,
+        "count": 213,
+        "class": null,
+        "total": true
+      },
+      {
+        "label": "same payment, amounts differ by a rounding unit",
+        "amount_minor": 2,
+        "count": 2,
+        "class": "rounding",
+        "total": false
+      },
+      {
+        "label": "captured at the provider, not paid in your ledger",
+        "amount_minor": 4900,
+        "count": 1,
+        "class": "pending_in_ledger",
+        "total": false
+      },
+      {
+        "label": "a second capture for an order your ledger has once",
+        "amount_minor": 79041,
+        "count": 3,
+        "class": "double_charge",
+        "total": false
+      },
+      {
+        "label": "disputes at the provider, not in your ledger",
+        "amount_minor": -12719,
+        "count": 2,
+        "class": "not_in_ledger",
+        "total": false
+      },
+      {
+        "label": "payment reversals at the provider, not in your ledger",
+        "amount_minor": -1900,
+        "count": 1,
+        "class": "not_in_ledger",
+        "total": false
+      },
+      {
+        "label": "Provider: payments, refunds, disputes (gross)",
+        "amount_minor": 3142663,
+        "count": 220,
+        "class": null,
+        "total": true
+      },
+      {
+        "label": "provider fees on those rows",
+        "amount_minor": -104983,
+        "count": 207,
+        "class": null,
+        "total": false
+      },
+      {
+        "label": "Provider: net",
+        "amount_minor": 3037680,
+        "count": null,
+        "class": null,
+        "total": true
+      },
+      {
+        "label": "payouts that differ from the sum of their rows",
+        "amount_minor": -5000,
+        "count": null,
+        "class": "payout_sum",
+        "total": false
+      },
+      {
+        "label": "Payouts",
+        "amount_minor": 3032680,
+        "count": 30,
+        "class": null,
+        "total": true
+      },
+      {
+        "label": "the bank received a different amount",
+        "amount_minor": -2500,
+        "count": 1,
+        "class": "bank_amount_differs",
+        "total": false
+      },
+      {
+        "label": "Bank: deposits matched to payouts",
+        "amount_minor": 3030180,
+        "count": 30,
+        "class": null,
+        "total": true
+      }
+    ]
+  },
+  "ledger_only": {},
+  "findings": [
+    {
+      "class": "pending_in_ledger",
+      "severity": "error",
+      "kind": "payment",
+      "message": "payment captured at the provider; ledger status is pending",
+      "currency": "USD",
+      "amount_minor": 4900,
+      "order_ref": "ord_10002",
+      "payment_ref": "4900896756852776",
+      "ledger": [
+        {
+          "id": "L000002",
+          "line": 169,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "pending"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4028355743239511",
+          "line": 161,
+          "kind": "payment",
+          "gross_minor": 4900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "not_in_ledger",
+      "severity": "error",
+      "kind": "dispute",
+      "message": "dispute at the provider with no ledger entry",
+      "currency": "USD",
+      "amount_minor": -10329,
+      "order_ref": "ord_10104",
+      "payment_ref": "1138757141145335",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "8675707771140356",
+          "line": 138,
+          "kind": "dispute",
+          "gross_minor": -10329,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "not_in_ledger",
+      "severity": "error",
+      "kind": "dispute",
+      "message": "dispute at the provider with no ledger entry",
+      "currency": "USD",
+      "amount_minor": -2390,
+      "order_ref": "ord_10047",
+      "payment_ref": "1173552068983580",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "6086175104336752",
+          "line": 140,
+          "kind": "dispute",
+          "gross_minor": -2390,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "not_in_ledger",
+      "severity": "error",
+      "kind": "payment_reversal",
+      "message": "payment_reversal at the provider with no ledger entry",
+      "currency": "USD",
+      "amount_minor": -1900,
+      "order_ref": "ord_10063",
+      "payment_ref": "3986852487272425",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "1184472638171120",
+          "line": 187,
+          "kind": "payment_reversal",
+          "gross_minor": -1900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "double_charge",
+      "severity": "error",
+      "kind": "payment",
+      "message": "captured although the ledger has this attempt as failed; another payment of the order is matched",
+      "currency": "USD",
+      "amount_minor": 28210,
+      "order_ref": "ord_10323",
+      "payment_ref": "5791350215900975",
+      "ledger": [
+        {
+          "id": "L000350",
+          "line": 165,
+          "amount_minor": 28210,
+          "currency": "USD",
+          "status": "failed"
+        }
+      ],
+      "provider": [
+        {
+          "id": "6287471424785607",
+          "line": 156,
+          "kind": "payment",
+          "gross_minor": 28210,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "double_charge",
+      "severity": "error",
+      "kind": "payment",
+      "message": "order ord_10197 has another captured payment that the ledger matches",
+      "currency": "USD",
+      "amount_minor": 17701,
+      "order_ref": "ord_10197",
+      "payment_ref": "8312462706063995",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "4688298984700947",
+          "line": 71,
+          "kind": "payment",
+          "gross_minor": 17701,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "double_charge",
+      "severity": "error",
+      "kind": "payment",
+      "message": "order ord_10172 has another captured payment that the ledger matches",
+      "currency": "USD",
+      "amount_minor": 33130,
+      "order_ref": "ord_10172",
+      "payment_ref": "1145690889578401",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "1798611337688656",
+          "line": 128,
+          "kind": "payment",
+          "gross_minor": 33130,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {}
+    },
+    {
+      "class": "row_arithmetic",
+      "severity": "error",
+      "kind": "payment",
+      "message": "gross columns give 99.25, net + fee give 99.00",
+      "currency": "USD",
+      "amount_minor": 0,
+      "order_ref": "ord_10120",
+      "payment_ref": "9095653277380229",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "3224043355627222",
+          "line": 73,
+          "kind": "payment",
+          "gross_minor": 9900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "gross_reported": 9925,
+        "gross": 9900
+      }
+    },
+    {
+      "class": "row_arithmetic",
+      "severity": "error",
+      "kind": "payment",
+      "message": "gross columns give 18.13, net + fee give 17.88",
+      "currency": "USD",
+      "amount_minor": 0,
+      "order_ref": "ord_10114",
+      "payment_ref": "8644565206649534",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "3725918959378759",
+          "line": 181,
+          "kind": "payment",
+          "gross_minor": 1788,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "gross_reported": 1813,
+        "gross": 1788
+      }
+    },
+    {
+      "class": "payout_sum",
+      "severity": "error",
+      "kind": "payout",
+      "message": "payout 692.33, its rows add up to 742.33",
+      "currency": "USD",
+      "amount_minor": -5000,
+      "order_ref": null,
+      "payment_ref": null,
+      "ledger": [],
+      "provider": [],
+      "payout": {
+        "id": "batch 19",
+        "date": "2026-09-11",
+        "amount_minor": 69233
+      },
+      "bank": null,
+      "detail": {
+        "rows_total": 74233
+      }
+    },
+    {
+      "class": "rounding",
+      "severity": "warning",
+      "kind": "payment",
+      "message": "ledger 204.93, provider 204.94 USD",
+      "currency": "USD",
+      "amount_minor": 1,
+      "order_ref": "ord_10076",
+      "payment_ref": "6885088957486984",
+      "ledger": [
+        {
+          "id": "L000085",
+          "line": 132,
+          "amount_minor": 20493,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5969044983574412",
+          "line": 118,
+          "kind": "payment",
+          "gross_minor": 20494,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_minor": 20493,
+        "provider_minor": 20494,
+        "diff_minor": 1,
+        "currency": "USD"
+      }
+    },
+    {
+      "class": "rounding",
+      "severity": "warning",
+      "kind": "payment",
+      "message": "ledger 118.81, provider 118.82 USD",
+      "currency": "USD",
+      "amount_minor": 1,
+      "order_ref": "ord_10050",
+      "payment_ref": "9583065733697895",
+      "ledger": [
+        {
+          "id": "L000057",
+          "line": 156,
+          "amount_minor": 11881,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8534881427804908",
+          "line": 146,
+          "kind": "payment",
+          "gross_minor": 11882,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_minor": 11881,
+        "provider_minor": 11882,
+        "diff_minor": 1,
+        "currency": "USD"
+      }
+    },
+    {
+      "class": "fee_above_schedule",
+      "severity": "warning",
+      "kind": "payment",
+      "message": "fee 11.39, schedule 2.9%+0.30 gives 7.61",
+      "currency": "USD",
+      "amount_minor": -378,
+      "order_ref": "ord_10167",
+      "payment_ref": "1954253903498003",
+      "ledger": [],
+      "provider": [
+        {
+          "id": "5496611741123553",
+          "line": 114,
+          "kind": "payment",
+          "gross_minor": 25215,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "fee": 1139,
+        "expected": 761
+      }
+    },
+    {
+      "class": "bank_amount_differs",
+      "severity": "warning",
+      "kind": "payout",
+      "message": "payout 461.20, bank 436.20",
+      "currency": "USD",
+      "amount_minor": -2500,
+      "order_ref": null,
+      "payment_ref": null,
+      "ledger": [],
+      "provider": [],
+      "payout": {
+        "id": "batch 15",
+        "date": "2026-09-07",
+        "amount_minor": 46120
+      },
+      "bank": {
+        "line": 15,
+        "date": "2026-09-07",
+        "amount_minor": 43620,
+        "description": "ADYEN N.V. TX4313824XT"
+      },
+      "detail": {
+        "payout_minor": 46120,
+        "bank_minor": 43620
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-08-29, provider day 2026-08-30",
+      "currency": "USD",
+      "amount_minor": 4900,
+      "order_ref": "ord_10238",
+      "payment_ref": "5045555504669061",
+      "ledger": [
+        {
+          "id": "L000260",
+          "line": 25,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3822585564665516",
+          "line": 2,
+          "kind": "payment",
+          "gross_minor": 4900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-08-29",
+        "provider_day": "2026-08-30"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-08-29, provider day 2026-08-30",
+      "currency": "USD",
+      "amount_minor": 4189,
+      "order_ref": "ord_10098",
+      "payment_ref": "8401951317490394",
+      "ledger": [
+        {
+          "id": "L000108",
+          "line": 26,
+          "amount_minor": 4189,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5951989276359346",
+          "line": 3,
+          "kind": "payment",
+          "gross_minor": 4189,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-08-29",
+        "provider_day": "2026-08-30"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-08-31, provider day 2026-09-01",
+      "currency": "USD",
+      "amount_minor": 7046,
+      "order_ref": "ord_10123",
+      "payment_ref": "1938425576242082",
+      "ledger": [
+        {
+          "id": "L000137",
+          "line": 36,
+          "amount_minor": 7046,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3568398988697250",
+          "line": 15,
+          "kind": "payment",
+          "gross_minor": 7046,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-08-31",
+        "provider_day": "2026-09-01"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-08-31, provider day 2026-09-01",
+      "currency": "USD",
+      "amount_minor": 9900,
+      "order_ref": "ord_10185",
+      "payment_ref": "1378344253923468",
+      "ledger": [
+        {
+          "id": "L000204",
+          "line": 37,
+          "amount_minor": 9900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "6201498719998205",
+          "line": 16,
+          "kind": "payment",
+          "gross_minor": 9900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-08-31",
+        "provider_day": "2026-09-01"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-01, provider day 2026-09-02",
+      "currency": "USD",
+      "amount_minor": 24761,
+      "order_ref": "ord_10099",
+      "payment_ref": "9265606127259661",
+      "ledger": [
+        {
+          "id": "L000110",
+          "line": 45,
+          "amount_minor": 24761,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1229434704874219",
+          "line": 24,
+          "kind": "payment",
+          "gross_minor": 24761,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-01",
+        "provider_day": "2026-09-02"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-01, provider day 2026-09-02",
+      "currency": "USD",
+      "amount_minor": 4900,
+      "order_ref": "ord_10024",
+      "payment_ref": "5391639024576007",
+      "ledger": [
+        {
+          "id": "L000027",
+          "line": 46,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9627150479402110",
+          "line": 25,
+          "kind": "payment",
+          "gross_minor": 4900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-01",
+        "provider_day": "2026-09-02"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-01, provider day 2026-09-02",
+      "currency": "USD",
+      "amount_minor": 1255,
+      "order_ref": "ord_10165",
+      "payment_ref": "5739651762414901",
+      "ledger": [
+        {
+          "id": "L000182",
+          "line": 47,
+          "amount_minor": 1255,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8310402457196756",
+          "line": 26,
+          "kind": "payment",
+          "gross_minor": 1255,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-01",
+        "provider_day": "2026-09-02"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-02, provider day 2026-09-03",
+      "currency": "USD",
+      "amount_minor": 14394,
+      "order_ref": "ord_10319",
+      "payment_ref": "3917438920372277",
+      "ledger": [
+        {
+          "id": "L000346",
+          "line": 57,
+          "amount_minor": 14394,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "2591987215598556",
+          "line": 36,
+          "kind": "payment",
+          "gross_minor": 14394,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-02",
+        "provider_day": "2026-09-03"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-03, provider day 2026-09-04",
+      "currency": "USD",
+      "amount_minor": 7224,
+      "order_ref": "ord_10148",
+      "payment_ref": "7557705768079890",
+      "ledger": [
+        {
+          "id": "L000164",
+          "line": 63,
+          "amount_minor": 7224,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3745714335379256",
+          "line": 43,
+          "kind": "payment",
+          "gross_minor": 7224,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-03",
+        "provider_day": "2026-09-04"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "refund",
+      "message": "ledger day 2026-09-04, provider day 2026-09-05",
+      "currency": "USD",
+      "amount_minor": -9623,
+      "order_ref": "ord_10081",
+      "payment_ref": "2363474227008829",
+      "ledger": [
+        {
+          "id": "L000362",
+          "line": 77,
+          "amount_minor": -9623,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5807345304387641",
+          "line": 56,
+          "kind": "refund",
+          "gross_minor": -9623,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-04",
+        "provider_day": "2026-09-05"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-04, provider day 2026-09-05",
+      "currency": "USD",
+      "amount_minor": 5908,
+      "order_ref": "ord_10089",
+      "payment_ref": "3388167764739296",
+      "ledger": [
+        {
+          "id": "L000099",
+          "line": 78,
+          "amount_minor": 5908,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "7237805273456206",
+          "line": 57,
+          "kind": "payment",
+          "gross_minor": 5908,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-04",
+        "provider_day": "2026-09-05"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-05, provider day 2026-09-06",
+      "currency": "USD",
+      "amount_minor": 11055,
+      "order_ref": "ord_10270",
+      "payment_ref": "8981983594545573",
+      "ledger": [
+        {
+          "id": "L000293",
+          "line": 86,
+          "amount_minor": 9900,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "2165612655253062",
+          "line": 65,
+          "kind": "payment",
+          "gross_minor": 11055,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-05",
+        "provider_day": "2026-09-06"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-05, provider day 2026-09-06",
+      "currency": "USD",
+      "amount_minor": 35935,
+      "order_ref": "ord_10208",
+      "payment_ref": "6929432846121439",
+      "ledger": [
+        {
+          "id": "L000229",
+          "line": 87,
+          "amount_minor": 35935,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4149133242703801",
+          "line": 66,
+          "kind": "payment",
+          "gross_minor": 35935,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-05",
+        "provider_day": "2026-09-06"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-05, provider day 2026-09-06",
+      "currency": "USD",
+      "amount_minor": 9900,
+      "order_ref": "ord_10161",
+      "payment_ref": "4366900247357557",
+      "ledger": [
+        {
+          "id": "L000178",
+          "line": 88,
+          "amount_minor": 9900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8090433909551356",
+          "line": 67,
+          "kind": "payment",
+          "gross_minor": 9900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-05",
+        "provider_day": "2026-09-06"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-07, provider day 2026-09-08",
+      "currency": "USD",
+      "amount_minor": 9080,
+      "order_ref": "ord_10200",
+      "payment_ref": "8821235483452961",
+      "ledger": [
+        {
+          "id": "L000219",
+          "line": 94,
+          "amount_minor": 9080,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3882965482692407",
+          "line": 75,
+          "kind": "payment",
+          "gross_minor": 9080,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-07",
+        "provider_day": "2026-09-08"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-08, provider day 2026-09-09",
+      "currency": "USD",
+      "amount_minor": 35926,
+      "order_ref": "ord_10205",
+      "payment_ref": "1058193249944648",
+      "ledger": [
+        {
+          "id": "L000226",
+          "line": 96,
+          "amount_minor": 35926,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3080890128286390",
+          "line": 78,
+          "kind": "payment",
+          "gross_minor": 35926,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-08",
+        "provider_day": "2026-09-09"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-09, provider day 2026-09-10",
+      "currency": "USD",
+      "amount_minor": 5347,
+      "order_ref": "ord_10110",
+      "payment_ref": "7774526909537412",
+      "ledger": [
+        {
+          "id": "L000123",
+          "line": 102,
+          "amount_minor": 4900,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1484201367513065",
+          "line": 85,
+          "kind": "payment",
+          "gross_minor": 5347,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-09",
+        "provider_day": "2026-09-10"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-09, provider day 2026-09-10",
+      "currency": "USD",
+      "amount_minor": 7997,
+      "order_ref": "ord_10116",
+      "payment_ref": "8522128188068197",
+      "ledger": [
+        {
+          "id": "L000129",
+          "line": 103,
+          "amount_minor": 7997,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4552591347778042",
+          "line": 86,
+          "kind": "payment",
+          "gross_minor": 7997,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-09",
+        "provider_day": "2026-09-10"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-10, provider day 2026-09-11",
+      "currency": "USD",
+      "amount_minor": 10329,
+      "order_ref": "ord_10104",
+      "payment_ref": "1138757141145335",
+      "ledger": [
+        {
+          "id": "L000116",
+          "line": 108,
+          "amount_minor": 10329,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9074551070065033",
+          "line": 92,
+          "kind": "payment",
+          "gross_minor": 10329,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-10",
+        "provider_day": "2026-09-11"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-11, provider day 2026-09-12",
+      "currency": "USD",
+      "amount_minor": 1900,
+      "order_ref": "ord_10057",
+      "payment_ref": "2772898102280991",
+      "ledger": [
+        {
+          "id": "L000064",
+          "line": 114,
+          "amount_minor": 1900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5919194360417854",
+          "line": 99,
+          "kind": "payment",
+          "gross_minor": 1900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-11",
+        "provider_day": "2026-09-12"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-13, provider day 2026-09-14",
+      "currency": "USD",
+      "amount_minor": 4694,
+      "order_ref": "ord_10326",
+      "payment_ref": "7176301486166461",
+      "ledger": [
+        {
+          "id": "L000354",
+          "line": 126,
+          "amount_minor": 4694,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9666756505279518",
+          "line": 111,
+          "kind": "payment",
+          "gross_minor": 4694,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-13",
+        "provider_day": "2026-09-14"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "refund",
+      "message": "ledger day 2026-09-14, provider day 2026-09-15",
+      "currency": "USD",
+      "amount_minor": -2665,
+      "order_ref": "ord_10116",
+      "payment_ref": "8522128188068197",
+      "ledger": [
+        {
+          "id": "L000364",
+          "line": 130,
+          "amount_minor": -2665,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "2339797412383580",
+          "line": 116,
+          "kind": "refund",
+          "gross_minor": -2665,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-14",
+        "provider_day": "2026-09-15"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-14, provider day 2026-09-15",
+      "currency": "USD",
+      "amount_minor": 5445,
+      "order_ref": "ord_10158",
+      "payment_ref": "1507482504653524",
+      "ledger": [
+        {
+          "id": "L000174",
+          "line": 131,
+          "amount_minor": 4900,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8175374193711247",
+          "line": 117,
+          "kind": "payment",
+          "gross_minor": 5445,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-14",
+        "provider_day": "2026-09-15"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-15, provider day 2026-09-16",
+      "currency": "USD",
+      "amount_minor": 33310,
+      "order_ref": "ord_10246",
+      "payment_ref": "7874249035298146",
+      "ledger": [
+        {
+          "id": "L000268",
+          "line": 136,
+          "amount_minor": 33310,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5843055847626559",
+          "line": 123,
+          "kind": "payment",
+          "gross_minor": 33310,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-15",
+        "provider_day": "2026-09-16"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-15, provider day 2026-09-16",
+      "currency": "USD",
+      "amount_minor": 30133,
+      "order_ref": "ord_10227",
+      "payment_ref": "8447941289647325",
+      "ledger": [
+        {
+          "id": "L000249",
+          "line": 137,
+          "amount_minor": 30133,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "2032785476900121",
+          "line": 124,
+          "kind": "payment",
+          "gross_minor": 30133,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-15",
+        "provider_day": "2026-09-16"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-16, provider day 2026-09-17",
+      "currency": "USD",
+      "amount_minor": 5332,
+      "order_ref": "ord_10242",
+      "payment_ref": "6799439598411522",
+      "ledger": [
+        {
+          "id": "L000264",
+          "line": 147,
+          "amount_minor": 5332,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9838806620858777",
+          "line": 134,
+          "kind": "payment",
+          "gross_minor": 5332,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-16",
+        "provider_day": "2026-09-17"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-16, provider day 2026-09-17",
+      "currency": "USD",
+      "amount_minor": 24486,
+      "order_ref": "ord_10122",
+      "payment_ref": "2765328491072918",
+      "ledger": [
+        {
+          "id": "L000136",
+          "line": 148,
+          "amount_minor": 24486,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1676003756507483",
+          "line": 135,
+          "kind": "payment",
+          "gross_minor": 24486,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-16",
+        "provider_day": "2026-09-17"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-16, provider day 2026-09-17",
+      "currency": "USD",
+      "amount_minor": 11965,
+      "order_ref": "ord_10150",
+      "payment_ref": "2688111958615512",
+      "ledger": [
+        {
+          "id": "L000166",
+          "line": 149,
+          "amount_minor": 11965,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8738686259294655",
+          "line": 136,
+          "kind": "payment",
+          "gross_minor": 11965,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-16",
+        "provider_day": "2026-09-17"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-16, provider day 2026-09-17",
+      "currency": "USD",
+      "amount_minor": 27828,
+      "order_ref": "ord_10058",
+      "payment_ref": "1467079639670443",
+      "ledger": [
+        {
+          "id": "L000065",
+          "line": 150,
+          "amount_minor": 27828,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9040273374463959",
+          "line": 137,
+          "kind": "payment",
+          "gross_minor": 27828,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-16",
+        "provider_day": "2026-09-17"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-18, provider day 2026-09-19",
+      "currency": "USD",
+      "amount_minor": 3489,
+      "order_ref": "ord_10249",
+      "payment_ref": "8572842887428308",
+      "ledger": [
+        {
+          "id": "L000271",
+          "line": 159,
+          "amount_minor": 3489,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9293591287793236",
+          "line": 150,
+          "kind": "payment",
+          "gross_minor": 3489,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-18",
+        "provider_day": "2026-09-19"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-19, provider day 2026-09-20",
+      "currency": "USD",
+      "amount_minor": 13571,
+      "order_ref": "ord_10209",
+      "payment_ref": "3408151310831984",
+      "ledger": [
+        {
+          "id": "L000230",
+          "line": 167,
+          "amount_minor": 13571,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4476861046596889",
+          "line": 159,
+          "kind": "payment",
+          "gross_minor": 13571,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-19",
+        "provider_day": "2026-09-20"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-19, provider day 2026-09-20",
+      "currency": "USD",
+      "amount_minor": 20205,
+      "order_ref": "ord_10040",
+      "payment_ref": "4252538907834338",
+      "ledger": [
+        {
+          "id": "L000046",
+          "line": 168,
+          "amount_minor": 20205,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1151462869096321",
+          "line": 160,
+          "kind": "payment",
+          "gross_minor": 20205,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-19",
+        "provider_day": "2026-09-20"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-20, provider day 2026-09-21",
+      "currency": "USD",
+      "amount_minor": 22230,
+      "order_ref": "ord_10310",
+      "payment_ref": "1551762082761256",
+      "ledger": [
+        {
+          "id": "L000336",
+          "line": 180,
+          "amount_minor": 22230,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1160210205004252",
+          "line": 172,
+          "kind": "payment",
+          "gross_minor": 22230,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-20",
+        "provider_day": "2026-09-21"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-20, provider day 2026-09-21",
+      "currency": "USD",
+      "amount_minor": 39709,
+      "order_ref": "ord_10078",
+      "payment_ref": "4281119547392091",
+      "ledger": [
+        {
+          "id": "L000087",
+          "line": 181,
+          "amount_minor": 39709,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "2644053026833602",
+          "line": 173,
+          "kind": "payment",
+          "gross_minor": 39709,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-20",
+        "provider_day": "2026-09-21"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-21, provider day 2026-09-22",
+      "currency": "USD",
+      "amount_minor": 18850,
+      "order_ref": "ord_10130",
+      "payment_ref": "6519565879945382",
+      "ledger": [
+        {
+          "id": "L000144",
+          "line": 190,
+          "amount_minor": 18850,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1422169498878023",
+          "line": 180,
+          "kind": "payment",
+          "gross_minor": 18850,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-21",
+        "provider_day": "2026-09-22"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-21, provider day 2026-09-22",
+      "currency": "USD",
+      "amount_minor": 1788,
+      "order_ref": "ord_10114",
+      "payment_ref": "8644565206649534",
+      "ledger": [
+        {
+          "id": "L000127",
+          "line": 191,
+          "amount_minor": 1788,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3725918959378759",
+          "line": 181,
+          "kind": "payment",
+          "gross_minor": 1788,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-21",
+        "provider_day": "2026-09-22"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-22, provider day 2026-09-23",
+      "currency": "USD",
+      "amount_minor": 24609,
+      "order_ref": "ord_10293",
+      "payment_ref": "4623556563344033",
+      "ledger": [
+        {
+          "id": "L000317",
+          "line": 199,
+          "amount_minor": 24609,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3793589566509970",
+          "line": 191,
+          "kind": "payment",
+          "gross_minor": 24609,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-22",
+        "provider_day": "2026-09-23"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": 973,
+      "order_ref": "ord_10141",
+      "payment_ref": "5850316734122852",
+      "ledger": [
+        {
+          "id": "L000156",
+          "line": 208,
+          "amount_minor": 973,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4732241196091727",
+          "line": 201,
+          "kind": "payment",
+          "gross_minor": 973,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "refund",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": -3300,
+      "order_ref": "ord_10263",
+      "payment_ref": "1728617212643257",
+      "ledger": [
+        {
+          "id": "L000373",
+          "line": 209,
+          "amount_minor": -3300,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8844747530156743",
+          "line": 202,
+          "kind": "refund",
+          "gross_minor": -3300,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": 26115,
+      "order_ref": "ord_10103",
+      "payment_ref": "3870082095287607",
+      "ledger": [
+        {
+          "id": "L000115",
+          "line": 210,
+          "amount_minor": 24056,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5050420986353897",
+          "line": 203,
+          "kind": "payment",
+          "gross_minor": 26115,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": 1900,
+      "order_ref": "ord_10106",
+      "payment_ref": "9977043781339156",
+      "ledger": [
+        {
+          "id": "L000119",
+          "line": 211,
+          "amount_minor": 1900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "2532481898585835",
+          "line": 204,
+          "kind": "payment",
+          "gross_minor": 1900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": 4985,
+      "order_ref": "ord_10308",
+      "payment_ref": "7868278917665962",
+      "ledger": [
+        {
+          "id": "L000333",
+          "line": 212,
+          "amount_minor": 4985,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9229730621720369",
+          "line": 205,
+          "kind": "payment",
+          "gross_minor": 4985,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": 32799,
+      "order_ref": "ord_10064",
+      "payment_ref": "4168188447589596",
+      "ledger": [
+        {
+          "id": "L000071",
+          "line": 213,
+          "amount_minor": 32799,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "1578980250964582",
+          "line": 206,
+          "kind": "payment",
+          "gross_minor": 32799,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-24, provider day 2026-09-25",
+      "currency": "USD",
+      "amount_minor": 3096,
+      "order_ref": "ord_10189",
+      "payment_ref": "1590032852627175",
+      "ledger": [
+        {
+          "id": "L000208",
+          "line": 214,
+          "amount_minor": 3096,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4333408013646507",
+          "line": 207,
+          "kind": "payment",
+          "gross_minor": 3096,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-24",
+        "provider_day": "2026-09-25"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-25, provider day 2026-09-26",
+      "currency": "USD",
+      "amount_minor": 7079,
+      "order_ref": "ord_10079",
+      "payment_ref": "8353490962469870",
+      "ledger": [
+        {
+          "id": "L000088",
+          "line": 219,
+          "amount_minor": 7079,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9026492400562004",
+          "line": 213,
+          "kind": "payment",
+          "gross_minor": 7079,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-25",
+        "provider_day": "2026-09-26"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-25, provider day 2026-09-26",
+      "currency": "USD",
+      "amount_minor": 37629,
+      "order_ref": "ord_10203",
+      "payment_ref": "4300703247986837",
+      "ledger": [
+        {
+          "id": "L000223",
+          "line": 221,
+          "amount_minor": 37629,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "7589769820016987",
+          "line": 214,
+          "kind": "payment",
+          "gross_minor": 37629,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-25",
+        "provider_day": "2026-09-26"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-25, provider day 2026-09-26",
+      "currency": "USD",
+      "amount_minor": 26070,
+      "order_ref": "ord_10038",
+      "payment_ref": "5943618038268773",
+      "ledger": [
+        {
+          "id": "L000043",
+          "line": 222,
+          "amount_minor": 26070,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9788911318217962",
+          "line": 215,
+          "kind": "payment",
+          "gross_minor": 26070,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-25",
+        "provider_day": "2026-09-26"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-25, provider day 2026-09-26",
+      "currency": "USD",
+      "amount_minor": 28706,
+      "order_ref": "ord_10318",
+      "payment_ref": "6359390381591450",
+      "ledger": [
+        {
+          "id": "L000345",
+          "line": 223,
+          "amount_minor": 28706,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9084194124561404",
+          "line": 216,
+          "kind": "payment",
+          "gross_minor": 28706,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-25",
+        "provider_day": "2026-09-26"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-25, provider day 2026-09-26",
+      "currency": "USD",
+      "amount_minor": 4900,
+      "order_ref": "ord_10137",
+      "payment_ref": "1132907084809282",
+      "ledger": [
+        {
+          "id": "L000152",
+          "line": 224,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "4120987545922970",
+          "line": 217,
+          "kind": "payment",
+          "gross_minor": 4900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-25",
+        "provider_day": "2026-09-26"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-25, provider day 2026-09-26",
+      "currency": "USD",
+      "amount_minor": 4900,
+      "order_ref": "ord_10179",
+      "payment_ref": "7876943230680565",
+      "ledger": [
+        {
+          "id": "L000198",
+          "line": 225,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "6253995637199473",
+          "line": 218,
+          "kind": "payment",
+          "gross_minor": 4900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-25",
+        "provider_day": "2026-09-26"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-26, provider day 2026-09-27",
+      "currency": "USD",
+      "amount_minor": 4900,
+      "order_ref": "ord_10232",
+      "payment_ref": "7831059548714049",
+      "ledger": [
+        {
+          "id": "L000254",
+          "line": 237,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5549544324964262",
+          "line": 231,
+          "kind": "payment",
+          "gross_minor": 4900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-26",
+        "provider_day": "2026-09-27"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-27, provider day 2026-09-28",
+      "currency": "USD",
+      "amount_minor": 33490,
+      "order_ref": "ord_10219",
+      "payment_ref": "9602886206091341",
+      "ledger": [
+        {
+          "id": "L000241",
+          "line": 244,
+          "amount_minor": 33490,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "9284828931497677",
+          "line": 239,
+          "kind": "payment",
+          "gross_minor": 33490,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-27",
+        "provider_day": "2026-09-28"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-27, provider day 2026-09-28",
+      "currency": "USD",
+      "amount_minor": 11916,
+      "order_ref": "ord_10280",
+      "payment_ref": "5344949270682258",
+      "ledger": [
+        {
+          "id": "L000303",
+          "line": 245,
+          "amount_minor": 10680,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3501482059369660",
+          "line": 240,
+          "kind": "payment",
+          "gross_minor": 11916,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-27",
+        "provider_day": "2026-09-28"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-27, provider day 2026-09-28",
+      "currency": "USD",
+      "amount_minor": 24304,
+      "order_ref": "ord_10264",
+      "payment_ref": "4339897972226610",
+      "ledger": [
+        {
+          "id": "L000287",
+          "line": 246,
+          "amount_minor": 24304,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "3736264903641404",
+          "line": 241,
+          "kind": "payment",
+          "gross_minor": 24304,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-27",
+        "provider_day": "2026-09-28"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger day 2026-09-27, provider day 2026-09-28",
+      "currency": "USD",
+      "amount_minor": 1900,
+      "order_ref": "ord_10134",
+      "payment_ref": "8645673341031492",
+      "ledger": [
+        {
+          "id": "L000149",
+          "line": 247,
+          "amount_minor": 1900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "8571650027065222",
+          "line": 242,
+          "kind": "payment",
+          "gross_minor": 1900,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-27",
+        "provider_day": "2026-09-28"
+      }
+    },
+    {
+      "class": "day_shift",
+      "severity": "info",
+      "kind": "refund",
+      "message": "ledger day 2026-09-27, provider day 2026-09-28",
+      "currency": "USD",
+      "amount_minor": -15449,
+      "order_ref": "ord_10091",
+      "payment_ref": "6103333643698849",
+      "ledger": [
+        {
+          "id": "L000363",
+          "line": 248,
+          "amount_minor": -15449,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [
+        {
+          "id": "5023199359859752",
+          "line": 243,
+          "kind": "refund",
+          "gross_minor": -15449,
+          "currency": "USD"
+        }
+      ],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "ledger_day": "2026-09-27",
+        "provider_day": "2026-09-28"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -630,
+      "order_ref": "ord_10135",
+      "payment_ref": "4204006818772049",
+      "ledger": [
+        {
+          "id": "L000150",
+          "line": 2,
+          "amount_minor": 630,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -10180,
+      "order_ref": "ord_10160",
+      "payment_ref": "9745276730067298",
+      "ledger": [
+        {
+          "id": "L000177",
+          "line": 3,
+          "amount_minor": 10180,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -27750,
+      "order_ref": "ord_10220",
+      "payment_ref": "4127504339237836",
+      "ledger": [
+        {
+          "id": "L000242",
+          "line": 4,
+          "amount_minor": 27750,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -38407,
+      "order_ref": "ord_10175",
+      "payment_ref": "6967788301584176",
+      "ledger": [
+        {
+          "id": "L000194",
+          "line": 5,
+          "amount_minor": 38407,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -6830,
+      "order_ref": "ord_10287",
+      "payment_ref": "9894079343367416",
+      "ledger": [
+        {
+          "id": "L000311",
+          "line": 6,
+          "amount_minor": 6830,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -8829,
+      "order_ref": "ord_10133",
+      "payment_ref": "4914527342984079",
+      "ledger": [
+        {
+          "id": "L000148",
+          "line": 7,
+          "amount_minor": 8829,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -9627,
+      "order_ref": "ord_10243",
+      "payment_ref": "6100534703957154",
+      "ledger": [
+        {
+          "id": "L000265",
+          "line": 8,
+          "amount_minor": 9627,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -8953,
+      "order_ref": "ord_10187",
+      "payment_ref": "5728900022879720",
+      "ledger": [
+        {
+          "id": "L000206",
+          "line": 9,
+          "amount_minor": 8953,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -17388,
+      "order_ref": "ord_10069",
+      "payment_ref": "8545296822098992",
+      "ledger": [
+        {
+          "id": "L000077",
+          "line": 11,
+          "amount_minor": 17388,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -9900,
+      "order_ref": "ord_10269",
+      "payment_ref": "1736198980102799",
+      "ledger": [
+        {
+          "id": "L000292",
+          "line": 12,
+          "amount_minor": 9900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -17436,
+      "order_ref": "ord_10286",
+      "payment_ref": "6647165173170305",
+      "ledger": [
+        {
+          "id": "L000310",
+          "line": 13,
+          "amount_minor": 17436,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10095",
+      "payment_ref": "5073022871369982",
+      "ledger": [
+        {
+          "id": "L000105",
+          "line": 14,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -31724,
+      "order_ref": "ord_10163",
+      "payment_ref": "5440668487896803",
+      "ledger": [
+        {
+          "id": "L000180",
+          "line": 15,
+          "amount_minor": 31724,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -19177,
+      "order_ref": "ord_10257",
+      "payment_ref": "5899638705572804",
+      "ledger": [
+        {
+          "id": "L000280",
+          "line": 16,
+          "amount_minor": 19177,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -33451,
+      "order_ref": "ord_10059",
+      "payment_ref": "8647263812787013",
+      "ledger": [
+        {
+          "id": "L000066",
+          "line": 17,
+          "amount_minor": 33451,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -36718,
+      "order_ref": "ord_10251",
+      "payment_ref": "3843602515598549",
+      "ledger": [
+        {
+          "id": "L000274",
+          "line": 18,
+          "amount_minor": 36718,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10262",
+      "payment_ref": "3008635081113201",
+      "ledger": [
+        {
+          "id": "L000285",
+          "line": 19,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -37141,
+      "order_ref": "ord_10281",
+      "payment_ref": "6047501512137359",
+      "ledger": [
+        {
+          "id": "L000304",
+          "line": 20,
+          "amount_minor": 37141,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -9900,
+      "order_ref": "ord_10049",
+      "payment_ref": "9393693360291982",
+      "ledger": [
+        {
+          "id": "L000056",
+          "line": 22,
+          "amount_minor": 9900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4834,
+      "order_ref": "ord_10180",
+      "payment_ref": "8166733287291000",
+      "ledger": [
+        {
+          "id": "L000199",
+          "line": 23,
+          "amount_minor": 4834,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -14229,
+      "order_ref": "ord_10267",
+      "payment_ref": "1978359388936416",
+      "ledger": [
+        {
+          "id": "L000290",
+          "line": 24,
+          "amount_minor": 14229,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10164",
+      "payment_ref": "4575203963825946",
+      "ledger": [
+        {
+          "id": "L000181",
+          "line": 256,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10054",
+      "payment_ref": "1511994288808155",
+      "ledger": [
+        {
+          "id": "L000061",
+          "line": 257,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "refund",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": 8147,
+      "order_ref": "ord_10290",
+      "payment_ref": "6836315235605846",
+      "ledger": [
+        {
+          "id": "L000374",
+          "line": 258,
+          "amount_minor": -8147,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -9900,
+      "order_ref": "ord_10301",
+      "payment_ref": "6222725957798161",
+      "ledger": [
+        {
+          "id": "L000326",
+          "line": 260,
+          "amount_minor": 9900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -20976,
+      "order_ref": "ord_10003",
+      "payment_ref": "8677437568784426",
+      "ledger": [
+        {
+          "id": "L000003",
+          "line": 261,
+          "amount_minor": 20976,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -28223,
+      "order_ref": "ord_10107",
+      "payment_ref": "4854814268724061",
+      "ledger": [
+        {
+          "id": "L000120",
+          "line": 262,
+          "amount_minor": 28223,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10070",
+      "payment_ref": "6907115995847211",
+      "ledger": [
+        {
+          "id": "L000078",
+          "line": 263,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -15313,
+      "order_ref": "ord_10071",
+      "payment_ref": "5177983713962657",
+      "ledger": [
+        {
+          "id": "L000079",
+          "line": 264,
+          "amount_minor": 15313,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "EUR",
+      "amount_minor": -6984,
+      "order_ref": "ord_10073",
+      "payment_ref": "1633390779649263",
+      "ledger": [
+        {
+          "id": "L000082",
+          "line": 265,
+          "amount_minor": 6984,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -1900,
+      "order_ref": "ord_10265",
+      "payment_ref": "4031129578113702",
+      "ledger": [
+        {
+          "id": "L000288",
+          "line": 266,
+          "amount_minor": 1900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10211",
+      "payment_ref": "5236562503154862",
+      "ledger": [
+        {
+          "id": "L000232",
+          "line": 267,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -5623,
+      "order_ref": "ord_10029",
+      "payment_ref": "9665480363719432",
+      "ledger": [
+        {
+          "id": "L000032",
+          "line": 268,
+          "amount_minor": 5623,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -4900,
+      "order_ref": "ord_10155",
+      "payment_ref": "3694297787301866",
+      "ledger": [
+        {
+          "id": "L000171",
+          "line": 269,
+          "amount_minor": 4900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -13630,
+      "order_ref": "ord_10285",
+      "payment_ref": "4078796369064592",
+      "ledger": [
+        {
+          "id": "L000309",
+          "line": 270,
+          "amount_minor": 13630,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -16894,
+      "order_ref": "ord_10023",
+      "payment_ref": "6045056436568713",
+      "ledger": [
+        {
+          "id": "L000026",
+          "line": 271,
+          "amount_minor": 16894,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -36736,
+      "order_ref": "ord_10253",
+      "payment_ref": "7000089382140698",
+      "ledger": [
+        {
+          "id": "L000276",
+          "line": 272,
+          "amount_minor": 36736,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "EUR",
+      "amount_minor": -31988,
+      "order_ref": "ord_10139",
+      "payment_ref": "7866994340964489",
+      "ledger": [
+        {
+          "id": "L000154",
+          "line": 273,
+          "amount_minor": 31988,
+          "currency": "EUR",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": "payment",
+      "message": "ledger entry outside the report's dates",
+      "currency": "USD",
+      "amount_minor": -9900,
+      "order_ref": "ord_10094",
+      "payment_ref": "1510543596024488",
+      "ledger": [
+        {
+          "id": "L000104",
+          "line": 274,
+          "amount_minor": 9900,
+          "currency": "USD",
+          "status": "paid"
+        }
+      ],
+      "provider": [],
+      "payout": null,
+      "bank": null,
+      "detail": {
+        "side": "ledger"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": null,
+      "message": "provider deposit outside the report's payout dates",
+      "currency": "USD",
+      "amount_minor": 78172,
+      "order_ref": null,
+      "payment_ref": null,
+      "ledger": [],
+      "provider": [],
+      "payout": null,
+      "bank": {
+        "line": 55,
+        "date": "2026-10-01",
+        "amount_minor": 78172,
+        "description": "ADYEN N.V. TX4313992XT"
+      },
+      "detail": {
+        "side": "bank_line"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": null,
+      "message": "provider deposit outside the report's payout dates",
+      "currency": "USD",
+      "amount_minor": 24194,
+      "order_ref": null,
+      "payment_ref": null,
+      "ledger": [],
+      "provider": [],
+      "payout": null,
+      "bank": {
+        "line": 58,
+        "date": "2026-10-02",
+        "amount_minor": 24194,
+        "description": "ADYEN N.V. TX4313999XT"
+      },
+      "detail": {
+        "side": "bank_line"
+      }
+    },
+    {
+      "class": "outside_window",
+      "severity": "info",
+      "kind": null,
+      "message": "provider deposit outside the report's payout dates",
+      "currency": "USD",
+      "amount_minor": 65220,
+      "order_ref": null,
+      "payment_ref": null,
+      "ledger": [],
+      "provider": [],
+      "payout": null,
+      "bank": {
+        "line": 61,
+        "date": "2026-10-03",
+        "amount_minor": 65220,
+        "description": "ADYEN N.V. TX4314006XT"
+      },
+      "detail": {
+        "side": "bank_line"
+      }
+    }
+  ],
+  "bank_matches": {
+    "batch 9": {
+      "line": 2,
+      "date": "2026-09-01",
+      "amount_minor": 103333
+    },
+    "batch 10": {
+      "line": 5,
+      "date": "2026-09-02",
+      "amount_minor": 40642
+    },
+    "batch 11": {
+      "line": 7,
+      "date": "2026-09-03",
+      "amount_minor": 87195
+    },
+    "batch 12": {
+      "line": 10,
+      "date": "2026-09-04",
+      "amount_minor": 117107
+    },
+    "batch 13": {
+      "line": 12,
+      "date": "2026-09-06",
+      "amount_minor": 124041
+    },
+    "batch 14": {
+      "line": 13,
+      "date": "2026-09-06",
+      "amount_minor": 150497
+    },
+    "batch 15": {
+      "line": 15,
+      "date": "2026-09-07",
+      "amount_minor": 43620
+    },
+    "batch 16": {
+      "line": 17,
+      "date": "2026-09-08",
+      "amount_minor": 106788
+    },
+    "batch 17": {
+      "line": 20,
+      "date": "2026-09-09",
+      "amount_minor": 9583
+    },
+    "batch 18": {
+      "line": 22,
+      "date": "2026-09-10",
+      "amount_minor": 31214
+    },
+    "batch 19": {
+      "line": 23,
+      "date": "2026-09-11",
+      "amount_minor": 69233
+    },
+    "batch 20": {
+      "line": 24,
+      "date": "2026-09-12",
+      "amount_minor": 72679
+    },
+    "batch 21": {
+      "line": 25,
+      "date": "2026-09-14",
+      "amount_minor": 97259
+    },
+    "batch 22": {
+      "line": 26,
+      "date": "2026-09-14",
+      "amount_minor": 100301
+    },
+    "batch 23": {
+      "line": 27,
+      "date": "2026-09-15",
+      "amount_minor": 48162
+    },
+    "batch 24": {
+      "line": 29,
+      "date": "2026-09-16",
+      "amount_minor": 56850
+    },
+    "batch 25": {
+      "line": 32,
+      "date": "2026-09-18",
+      "amount_minor": 71131
+    },
+    "batch 26": {
+      "line": 33,
+      "date": "2026-09-18",
+      "amount_minor": 226869
+    },
+    "batch 27": {
+      "line": 35,
+      "date": "2026-09-20",
+      "amount_minor": 77291
+    },
+    "batch 28": {
+      "line": 36,
+      "date": "2026-09-21",
+      "amount_minor": 76451
+    },
+    "batch 29": {
+      "line": 37,
+      "date": "2026-09-21",
+      "amount_minor": 91396
+    },
+    "batch 30": {
+      "line": 39,
+      "date": "2026-09-22",
+      "amount_minor": 121798
+    },
+    "batch 31": {
+      "line": 41,
+      "date": "2026-09-23",
+      "amount_minor": 187797
+    },
+    "batch 32": {
+      "line": 42,
+      "date": "2026-09-24",
+      "amount_minor": 127314
+    },
+    "batch 33": {
+      "line": 43,
+      "date": "2026-09-25",
+      "amount_minor": 127280
+    },
+    "batch 34": {
+      "line": 46,
+      "date": "2026-09-26",
+      "amount_minor": 23750
+    },
+    "batch 35": {
+      "line": 48,
+      "date": "2026-09-27",
+      "amount_minor": 123161
+    },
+    "batch 36": {
+      "line": 50,
+      "date": "2026-09-28",
+      "amount_minor": 160824
+    },
+    "batch 37": {
+      "line": 52,
+      "date": "2026-09-29",
+      "amount_minor": 147803
+    },
+    "batch 38": {
+      "line": 53,
+      "date": "2026-09-30",
+      "amount_minor": 208811
+    }
+  }
+}

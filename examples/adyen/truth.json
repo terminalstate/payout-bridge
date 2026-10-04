@@ -1,0 +1,61 @@
+[
+ {
+  "class": "bank_amount_differs",
+  "key": "batch 15"
+ },
+ {
+  "class": "double_charge",
+  "key": "ord_10172"
+ },
+ {
+  "class": "double_charge",
+  "key": "ord_10197"
+ },
+ {
+  "class": "double_charge",
+  "key": "ord_10323"
+ },
+ {
+  "class": "fee_above_schedule",
+  "key": "5496611741123553"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10047",
+  "kind": "dispute"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10063",
+  "kind": "payment_reversal"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10104",
+  "kind": "dispute"
+ },
+ {
+  "class": "payout_sum",
+  "key": "batch 19"
+ },
+ {
+  "class": "pending_in_ledger",
+  "key": "ord_10002"
+ },
+ {
+  "class": "rounding",
+  "key": "ord_10050"
+ },
+ {
+  "class": "rounding",
+  "key": "ord_10076"
+ },
+ {
+  "class": "row_arithmetic",
+  "key": "3224043355627222"
+ },
+ {
+  "class": "row_arithmetic",
+  "key": "3725918959378759"
+ }
+]

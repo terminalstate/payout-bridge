@@ -1,0 +1,125 @@
+[
+ {
+  "class": "amount_mismatch",
+  "key": "ord_10025"
+ },
+ {
+  "class": "amount_mismatch",
+  "key": "ord_10316"
+ },
+ {
+  "class": "bank_amount_differs",
+  "key": "po_202609147841"
+ },
+ {
+  "class": "bank_deposit_unexplained",
+  "key": "bank:31"
+ },
+ {
+  "class": "double_charge",
+  "key": "ord_10042"
+ },
+ {
+  "class": "fee_above_schedule",
+  "key": "txn_100009216713"
+ },
+ {
+  "class": "fee_above_schedule",
+  "key": "txn_100009528399"
+ },
+ {
+  "class": "not_at_provider",
+  "key": "ord_10051",
+  "kind": "payment"
+ },
+ {
+  "class": "not_at_provider",
+  "key": "ord_10135",
+  "kind": "payment"
+ },
+ {
+  "class": "not_at_provider",
+  "key": "ord_10184",
+  "kind": "refund"
+ },
+ {
+  "class": "not_at_provider",
+  "key": "ord_10235",
+  "kind": "refund"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10024",
+  "kind": "refund"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10093",
+  "kind": "dispute"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10129",
+  "kind": "dispute"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10149",
+  "kind": "dispute"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10203",
+  "kind": "payment"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10227",
+  "kind": "payment_reversal"
+ },
+ {
+  "class": "not_in_ledger",
+  "key": "ord_10228",
+  "kind": "refund"
+ },
+ {
+  "class": "partial_capture",
+  "key": "ord_10029"
+ },
+ {
+  "class": "partial_capture",
+  "key": "ord_10266"
+ },
+ {
+  "class": "payout_not_in_bank",
+  "key": "po_202609128910"
+ },
+ {
+  "class": "payout_not_in_bank",
+  "key": "po_202609216700"
+ },
+ {
+  "class": "pending_in_ledger",
+  "key": "ord_10115"
+ },
+ {
+  "class": "pending_in_ledger",
+  "key": "ord_10277"
+ },
+ {
+  "class": "rounding",
+  "key": "ord_10035"
+ },
+ {
+  "class": "rounding",
+  "key": "ord_10196"
+ },
+ {
+  "class": "row_arithmetic",
+  "key": "txn_100009149511"
+ },
+ {
+  "class": "row_arithmetic",
+  "key": "txn_100010091236"
+ }
+]
